@@ -40,7 +40,6 @@ const MainLayout = ({activeSection, setActiveSection}) => {
       contactMe: contactMeRef.current
      }[targetId]
      if(targetElement) {
-      console.log('target element', targetElement)
       targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
  

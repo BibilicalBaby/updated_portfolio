@@ -5,7 +5,7 @@ const ContactMe = () => {
   return (
     <>
       <div className='bg-image5 text-white  bg-blend-multiply bg-cover bg-custom-bg3 bg-center py-12 mt-3 px-3'>
-        <button className='text-center py-3 px-14 ml-[25%] rounded-md text-xl font-bold mb-7 bg-teal-500 w-1/2 font-montserrat'>Talk To Me</button>
+        <button className='text-center py-3 sm:px-14 px-3 ml-[25%] rounded-md text-xl font-bold mb-7 bg-teal-500 w-1/2 font-montserrat'>Talk To Me</button>
         <p className='font-normal text-md text-center mb-7 font-roboto'>You can send me a message using the form below</p>
         <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-md  m-auto">
           <h2 className="text-xl font-bold mb-4 text-black font-lato">Send me a message</h2>
