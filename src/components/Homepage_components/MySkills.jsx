@@ -41,10 +41,10 @@ const MySkills = () => {
   // Set the frontEnd section to be always visible
   const [visibleSections, setVisibleSections] = useState({
     frontEnd: true, // Make Front End section always open
-    backEnd: false,
-    design: false,
-    Others: false,
-    General: false
+    backEnd: true,
+    design: true,
+    Others: true,
+    General: true
   });
 
   const sections = [
