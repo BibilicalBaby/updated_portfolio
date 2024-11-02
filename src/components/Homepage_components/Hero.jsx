@@ -5,23 +5,22 @@ const Hero = () => {
   // CALCULATING MY AGE
   const [age, setAge] = useState('')
   useEffect(() => {
-    const calculateYears = () => {
-       const birthDate = new Date('4-oct-2003')
-       const currentDate = new Date(Date.now())
-       let totalYearsSince 
-        if(currentDate.getMonth() >= birthDate.getMonth()){
-          if(currentDate.getDate() >= birthDate.getDate()){
-            totalYearsSince = currentDate.getFullYear() - birthDate.getFullYear()
-          }else{
-            totalYearsSince = (currentDate.getFullYear() - birthDate.getFullYear()) - 1
-          }
-        }else{
-          totalYearsSince = (currentDate.getFullYear() - birthDate.getFullYear()) - 1
-        }
-        setAge(totalYearsSince)
+    const calculateYears = (date) => {
+      const today = new Date();
+      const startDate = new Date(date);
+      
+      let years = today.getFullYear() - startDate.getFullYear();
+      
+      // Adjust if the current date is before the anniversary this year
+      if (today < new Date(today.getFullYear(), startDate.getMonth(), startDate.getDate())) {
+          years--;
+      }
+      return years
 
     }
-    calculateYears()
+    setAge(calculateYears('2003-10-04'))
+    
+    
   }, [])
   
   return (
