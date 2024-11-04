@@ -4,6 +4,8 @@ import './App.css'
 import MainLayout from './layouts/MainLayout'
 import HomePage from './views/HomePage'
 import HiddenMessage from './components/HiddenMessage'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   const [activeSection, setActivesection] = useState('')
@@ -26,6 +28,7 @@ function App() {
          <HiddenMessage/>
         </div>
       </div>
+      <ToastContainer />
     </>
   )
 }

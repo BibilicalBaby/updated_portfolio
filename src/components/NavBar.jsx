@@ -38,7 +38,7 @@ const NavBar = ({ activeSection, handleScroll }) => {
                     <div className={`flex md:flex-row md:items-center fixed md:h-auto top-0 left-0 flex-col md:w-full h-full w-2/3 md:bg-white text-black z-20 bg-[whitesmoke] md:py-4 md:justify-between  md:px-7`}>
                         <IoMdClose className='absolute top-2 right-3 text-white font-bold text-xl md:hidden' onClick={toggleMenu} />
                         <a href='#home' id='home' onClick={handleScroll} className={`font-sniglet font-light hidden md:inline ${activeSection === 'home' ? 'text-blue-600 font-roboto scale-105 duration-300 transition  ease-in' : ''}`}>&lt;Mac_Boy/&gt;</a>
-                        <div className='md:flex md:flex-row md:justify-between md:gap-10 h-full'>
+                        <div className='md:flex md:flex-row md:justify-between md:gap-10'>
                             <div className='md:hidden bg-sky-500 mb-10 pt-10 pl-4 text-white pb-4'>
                                <img src={my_image} alt="image" className='rounded-full size-16 mb-3' />
                                <h2 className='my-1 font-sniglet'>Muthusi Developer</h2>

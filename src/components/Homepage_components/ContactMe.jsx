@@ -1,6 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 
 const ContactMe = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+  const fullMessage = {
+    name,
+    email,
+    message
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    // Check if fullMessage has required fields
+    if (!fullMessage || !fullMessage.name || !fullMessage.email || !fullMessage.message) {
+        toast.error('Please fill in all required fields.')
+        return
+    }
+
+    try {
+        const response = await fetch('https://my_portfolio.railway.app/sendmail', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(fullMessage)
+        })
+
+        // Check for non-200 response status
+        if (!response.ok) {
+            toast.error('Problem sending email, please try again!')
+            return
+        }
+
+        try {
+            const data = await response.json()
+            if (data && data.message) {
+                toast.success('Email sent successfully!')
+                console.log(data)
+            } else {
+                toast.error('Unexpected response from server.')
+            }
+        } catch (parseError) {
+            toast.error('Error parsing response from server.')
+            console.error('Parsing error:', parseError)
+        }
+        
+    } catch (err) {
+        toast.error(`Error: ${err.message}`)
+        console.error('Network or server error:', err)
+    }
+}
 
   return (
     <>
@@ -17,6 +69,8 @@ const ContactMe = () => {
               id="name"
               className="w-full p-2 rounded bg-[rgba(3,160,181,0.41)] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
               required
+              name='name'
+              onChange={e => setName(e.target.value)}
             />
           </div>
 
@@ -27,6 +81,8 @@ const ContactMe = () => {
               id="email"
               className="w-full p-2 rounded bg-[rgba(3,160,181,0.41)] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
               required
+              name='email'
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
 
@@ -37,11 +93,14 @@ const ContactMe = () => {
               rows="4"
               className="w-full p-2 rounded bg-[rgba(3,160,181,0.41)] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
               required
+              name='message'
+              onChange={e => setMessage(e.target.value)}
             ></textarea>
           </div>
 
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-full bg-teal-500 text-white p-2 rounded hover:bg-teal-600 transition"
           >
             Send Message
