@@ -20,7 +20,7 @@ const ContactMe = () => {
     }
 
     try {
-        const response = await fetch('https://my_portfolio.railway.app/sendmail', {
+        const response = await fetch('https://macboyportfolio.up.railway.app/sendmail', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
