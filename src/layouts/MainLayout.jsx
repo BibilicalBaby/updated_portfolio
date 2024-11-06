@@ -21,6 +21,7 @@ const MainLayout = ({activeSection, setActiveSection}) => {
     })
     return () => { observer.disconnect() }
   }, [setActiveSection])
+  
   //  SETTINGUP ALL REFS
   const homeRef = useRef(null)
   const aboutRef = useRef(null)

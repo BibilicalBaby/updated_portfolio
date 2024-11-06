@@ -13,7 +13,6 @@ const ContactMe = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     // Check if fullMessage has required fields
     if (!fullMessage || !fullMessage.name || !fullMessage.email || !fullMessage.message) {
         toast.error('Please fill in all required fields.')
@@ -39,7 +38,9 @@ const ContactMe = () => {
             const data = await response.json()
             if (data && data.message) {
                 toast.success('Email sent successfully!')
-                console.log(data)
+                setName('')
+                setEmail('')
+                setMessage('')
             } else {
                 toast.error('Unexpected response from server.')
             }
@@ -67,6 +68,7 @@ const ContactMe = () => {
             <input
               type="text"
               id="name"
+              value={name}
               className="w-full p-2 rounded bg-[rgba(3,160,181,0.41)] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
               required
               name='name'
@@ -79,6 +81,7 @@ const ContactMe = () => {
             <input
               type="email"
               id="email"
+              value={email}
               className="w-full p-2 rounded bg-[rgba(3,160,181,0.41)] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
               required
               name='email'
@@ -91,6 +94,7 @@ const ContactMe = () => {
             <textarea
               id="message"
               rows="4"
+              value={message}
               className="w-full p-2 rounded bg-[rgba(3,160,181,0.41)] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
               required
               name='message'

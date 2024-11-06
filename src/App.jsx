@@ -21,10 +21,10 @@ function App() {
     <>
       <div className='relative'>
         <RouterProvider router={router} />
-        <div className={`top-24 fixed right-0`}>
+        <div className={`top-24 fixed right-0 translate-x-[99.9%] hover:translate-x-0 transition transform ease-out duration-500`}>
          <HiddenMessage isRight/>
         </div>
-        <div className={`bottom-24 fixed left-0`}>
+        <div className={`bottom-24 fixed left-0 translate-x-[-99.9%] hover:translate-x-0 transition transform ease-out duration-500`}>
          <HiddenMessage/>
         </div>
       </div>

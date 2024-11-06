@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { MdOutlineCall } from "react-icons/md";
-import { FaCircleInfo, FaPersonDigging } from "react-icons/fa6";
-import { IoCodeSlashOutline } from "react-icons/io5";
-import { IoIosMenu, IoMdClose } from "react-icons/io";
-import { GoSearch } from "react-icons/go";
-import my_image from '../assets/image_2.jpeg';
+import React, { useState, useEffect, useRef } from 'react'
+import { MdOutlineCall } from "react-icons/md"
+import { FaCircleInfo, FaPersonDigging } from "react-icons/fa6"
+import { IoCodeSlashOutline } from "react-icons/io5"
+import { IoIosMenu, IoMdClose } from "react-icons/io"
+import { GoSearch } from "react-icons/go"
+import my_image from '../assets/image_2.jpeg'
 
 const NavBar = ({ activeSection, handleScroll }) => {
     // Set initial state based on window width
-    const [isOpen, setIsOpen] = useState(window.innerWidth >= 768);
+    const [isOpen, setIsOpen] = useState(window.innerWidth >= 768)
 
     const toggleMenu = () => {
-        setIsOpen(prevState => !prevState);
-    };
+        setIsOpen(prevState => !prevState)
+    }
 
     // Handle window resize
     useEffect(() => {
         const handleResize = () => {
-            setIsOpen(window.innerWidth >= 768);
-        };
+            setIsOpen(window.innerWidth >= 768)
+        }
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+    
 
     return (
         <>
@@ -75,7 +76,7 @@ const NavBar = ({ activeSection, handleScroll }) => {
                 )}
             </div>
         </>
-    );
-};
+    )
+}
 
-export default NavBar;
+export default NavBar
