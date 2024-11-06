@@ -5,6 +5,8 @@ const ContactMe = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [sendStatus, setSendStatus] = useState('Send Message')
+  const [isDisabled, setIsDisabled] = useState(false)
   const fullMessage = {
     name,
     email,
@@ -17,7 +19,9 @@ const ContactMe = () => {
     if (!fullMessage || !fullMessage.name || !fullMessage.email || !fullMessage.message) {
         toast.error('Please fill in all required fields.')
         return
-    }
+      }
+    setSendStatus('Sending...')
+    setIsDisabled(true)
 
     try {
         const response = await fetch('https://macboyportfolio.up.railway.app/sendmail', {
@@ -28,11 +32,16 @@ const ContactMe = () => {
             body: JSON.stringify(fullMessage)
         })
 
+        if(response){
+          setSendStatus('Send Message')
+          setIsDisabled(false)
+        }
         // Check for non-200 response status
         if (!response.ok) {
             toast.error('Problem sending email, please try again!')
             return
         }
+
 
         try {
             const data = await response.json()
@@ -104,10 +113,11 @@ const ContactMe = () => {
 
           <button
             type="submit"
+            disabled={isDisabled}
             onClick={handleSubmit}
-            className="w-full bg-teal-500 text-white p-2 rounded hover:bg-teal-600 transition"
+            className={`${isDisabled ? 'opacity-75' : 'opacity-100'} w-full bg-teal-500 text-white p-2 rounded hover:bg-teal-600 transition`}
           >
-            Send Message
+            {sendStatus}
           </button>
         </form>
       </div>
